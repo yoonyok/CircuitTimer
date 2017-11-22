@@ -25,14 +25,14 @@ func main() {
 
 func circuit(exerciseChan chan bool) {
     beginExercise()
-    time.Sleep(time.Minute*3)
+    time.Sleep(time.Minute*2)
     endExercise()
     exerciseChan <- true
 }
 
 func shortRest(restChan chan bool) {
     beginShortRest()
-    time.Sleep(time.Minute*1)
+    time.Sleep(time.Minute)
     endShortRest()
     restChan <- true
 }
@@ -43,17 +43,29 @@ func longRest(longRestChan chan bool) {
     longRestChan <- true
 }
 
-func beginExercise() {exec.Command("say", "Exercise begins").Output()}
+func beginExercise() {
+    exec.Command("say", "Exercise begins").Output()
+}
 
-func endExercise() {exec.Command("say", "Exercise ends").Output()}
+func endExercise() {
+    exec.Command("say", "Exercise ends").Output()
+}
 
-func beginShortRest() {}
+func beginShortRest() {
+    exec.Command("say", "Short rest begins").Output()
+}
 
-func endShortRest() {}
+func endShortRest() {
+    exec.Command("say", "Short rest ends").Output()
+}
 
-func beginLongRest() {}
+func beginLongRest() {
+    exec.Command("say", "Long rest begins").Output()
+}
 
-func endLongRest() {}
+func endLongRest() {
+    exec.Command("say", "Long rest ends").Output()
+}
 
 func circuitService(exerciseChan, shortRestChan, longRestChan, doneChan chan bool) {
     for {
